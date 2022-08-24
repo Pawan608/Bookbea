@@ -1,0 +1,12 @@
+const express = require("express");
+const authController = require("./../Controllers/authController");
+const requestController = require("./../Controllers/requestController");
+const router = express.Router();
+router.use(authController.checkJWT);
+router.post("/:bookId", requestController.makeRequest);
+router.post("/:requestId/:status", requestController.responseRequest);
+router.get("/getOutgoingRequest", requestController.getAllOutgoingRequest);
+router.get("/getIncomingRequest", requestController.getAllIncomingRequest);
+router.get("/getSharedBooks", requestController.getSharedBooks);
+router.get("/getborrowedbooks", requestController.getBorrowedBooks);
+module.exports = router;
